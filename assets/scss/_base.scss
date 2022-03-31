@@ -1,0 +1,21 @@
+@use "util/mq";
+
+:root {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Open Sans", sans-serif;
+  overflow-x: hidden;
+}
+main {
+  display: flex;
+  flex-direction: column;
+}
+.container {
+  margin: 0 auto;
+  max-width: calc(100vw - 50px);
+  @include mq.mq($from: desktop) {
+    max-width: min(100vw - 50px, 960px);
+  }
+}

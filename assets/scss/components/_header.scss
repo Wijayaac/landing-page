@@ -1,0 +1,126 @@
+@use "../util/mq";
+
+.sr-only {
+  border: 0;
+  height: 0;
+  width: 0;
+  margin: 0;
+  padding: 0;
+  font-size: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+  float: left;
+}
+
+.flex {
+  display: flex;
+  gap: var(--gap, 1rem);
+}
+.text--white {
+  color: var(--white);
+}
+.letter-spacing--2 {
+  letter-spacing: 2px;
+}
+.text--uppercase {
+  text-transform: uppercase;
+}
+
+/* Primary Header */
+.header {
+  @extend .flex;
+  margin-top: 2rem;
+
+  &__primary-navigation {
+    --gap: 2em;
+
+    position: absolute;
+    z-index: 1000;
+    inset: 0 0 0 30%;
+
+    flex-direction: column;
+    padding: min(30vh, 10rem) 2rem;
+
+    transform: translateX(100%);
+    transition: transform 0.3s ease-out;
+  }
+  &__primary-navigation[data-visible="true"] {
+    transform: translateX(0%);
+  }
+  &__mobile-nav-toggle {
+    display: block;
+    position: absolute;
+    z-index: 9999;
+    background-color: transparent;
+    background-image: url("/assets/images/list.svg");
+    background-repeat: no-repeat;
+    border: 0;
+    width: 2rem;
+    aspect-ratio: 1;
+    top: 2rem;
+    right: 2rem;
+  }
+  &__mobile-nav-toggle[aria-expanded="true"] {
+    background-image: url("/assets/images/close.svg");
+  }
+  @supports (backdrop-filter: blur(1rem)) {
+    &__primary-navigation {
+      background: hsl(0 0% 100% /0.1);
+      backdrop-filter: blur(1rem);
+    }
+  }
+  @include mq.mq($from: tablet) {
+    &__primary-navigation {
+      --gap: clamp(1.5rem, 5vw, 3rem);
+      padding-block: 2rem;
+      padding-inline: clamp(3rem, 10vw, 10rem);
+    }
+  }
+  @include mq.mq($until: desktop, $and: false, $from: mobile) {
+    &__primary-navigation a > span[aria-hidden] {
+      display: none;
+    }
+  }
+  @include mq.mq($from: desktop) {
+    --gap: 10rem;
+    &__logo {
+      margin: 1rem;
+      object-fit: cover;
+      width: 50px;
+    }
+    &__primary-header {
+      align-items: center;
+      justify-content: space-between;
+    }
+    &__mobile-nav-toggle {
+      display: none;
+    }
+    &__primary-navigation {
+      flex-direction: row;
+
+      inset: unset;
+      transform: translateX(0);
+
+      background: transparent;
+      backdrop-filter: none;
+
+      padding: 0;
+      margin: 0;
+    }
+
+    &__primary-navigation a {
+      text-decoration: none;
+    }
+    &__primary-navigation a > [aria-hidden="true"] {
+      font-weight: 700;
+      margin-inline-end: 0.75em;
+    }
+    &__primary-navigation a > span[aria-hidden] {
+      display: block;
+    }
+    &--active {
+      font-weight: 700;
+    }
+  }
+}
