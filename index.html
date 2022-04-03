@@ -13,45 +13,60 @@
 </head>
 
 <body>
-    <header class="header container">
-        <span class="header__logo">FCC</span>
+    <header class="header container" id="header">
+        <img class="header__logo" src="./assets/images/logo.svg" alt="" id="header-img">FCC</img>
         <button class="header__mobile-nav-toggle" aria-controls="primary-navigation" aria-expanded="false">
             <span class="sr-only">Menu</span>
         </button>
-        <nav>
+        <nav id="nav-bar">
             <ul id="primary-navigation" data-visible="false" class="header__primary-navigation flex">
-                <li class="header--active">
-                    <a href="index.html" class="text--uppercase text--white letter-spacing--2">
-                        <span aria-hidden="true">00</span>Home
+                <li>
+                    <a href="#feature" class="nav-link text--uppercase text--white letter-spacing--2">
+                        <span aria-hidden="true">01</span>Feature
                     </a>
                 </li>
                 <li>
-                    <a href="index.html" class="text--uppercase text--white letter-spacing--2">
-                        <span aria-hidden="true">01</span>Career
+                    <a href="#making" class="nav-link text--uppercase text--white letter-spacing--2">
+                        <span aria-hidden="true">02</span>Making
                     </a>
                 </li>
                 <li>
-                    <a href="index.html" class="text--uppercase text--white letter-spacing--2">
-                        <span aria-hidden="true">02</span>Honors & Awards
-                    </a>
-                </li>
-                <li>
-                    <a href="index.html" class="text--uppercase text--white letter-spacing--2">
-                        <span aria-hidden="true">03</span>Books & Lectures
+                    <a href="#pricing" class="nav-link text--uppercase text--white letter-spacing--2">
+                        <span aria-hidden="true">03</span>Pricing
                     </a>
                 </li>
             </ul>
         </nav>
     </header>
     <main class="container">
-        <section class="lp">
+        <section class="hero">
 
         </section>
+        <section class="making" id="making">
+            <iframe id="video" width="950" height="534" src="https://www.youtube.com/embed/fgdpvwEWJ9M"
+                title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+        </section>
+        <section class="subscribe" id="pricing">
+            <div class="form__wrapper">
+                <form action="https://www.freecodecamp.com/email-submit" id="form">
+                    <div class="form__email">
+                        <label for="email">Email address</label>
+                        <input type="email" name="email" placeholder="Your email address" id="email" required>
+                    </div>
+                    <div class="form__submit">
+                        <input type="submit" value="Subscribe" id="submit">
+                    </div>
+
+                </form>
+            </div>
+        </section>
     </main>
-    <footer class="container">
+    <footer class="container" id="feature">
         <p>Copyright &copy; 2022 - Wijaya | FCC - Landing Page</p>
     </footer>
-    <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+    <!-- <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script> -->
     <script src="/assets/js/app.js" defer></script>
 </body>
 

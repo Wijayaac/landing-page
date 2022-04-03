@@ -30,6 +30,7 @@
 /* Primary Header */
 .header {
   @extend .flex;
+  position: fixed;
   margin-top: 2rem;
 
   &__primary-navigation {
