@@ -6,3 +6,30 @@ h2,
 .h2 {
   font-size: $text-lg;
 }
+.btn {
+  display: inline-block;
+
+  padding: 0.75em 1.5em;
+  border-radius: 0.5em;
+  &--cta {
+    background-color: $primary-color;
+    color: $black;
+  }
+}
+.hero {
+  margin-top: 4rem;
+  &__tx-wrp {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+  &__title {
+    margin-bottom: 1.5rem;
+  }
+  &__sub {
+    font-size: $text-sm;
+  }
+  &__cta {
+    margin: 1.5rem 0;
+    @extend .btn;
+  }
+}

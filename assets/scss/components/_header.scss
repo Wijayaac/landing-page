@@ -30,20 +30,34 @@
 /* Primary Header */
 .header {
   @extend .flex;
+
   position: fixed;
-  margin-top: 2rem;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  padding-top: 1rem;
+
+  &__logo {
+    object-fit: contain;
+    object-position: center;
+
+    width: 120px;
+    height: auto;
+  }
 
   &__primary-navigation {
-    --gap: 2em;
+    flex-direction: column;
 
     position: absolute;
     z-index: 1000;
-    inset: 0 0 0 30%;
+    inset: 0 -10% 0 30%;
 
-    flex-direction: column;
+    --gap: 2em;
     padding: min(30vh, 10rem) 2rem;
+    height: 100vh;
 
-    transform: translateX(100%);
+    transform: translateX(115%);
     transition: transform 0.3s ease-out;
   }
   &__primary-navigation[data-visible="true"] {
@@ -51,16 +65,22 @@
   }
   &__mobile-nav-toggle {
     display: block;
+
     position: absolute;
     z-index: 9999;
+    top: 1rem;
+    right: 0;
+
     background-color: transparent;
     background-image: url("/assets/images/list.svg");
     background-repeat: no-repeat;
-    border: 0;
-    width: 2rem;
+    background-position: center;
     aspect-ratio: 1;
-    top: 2rem;
-    right: 2rem;
+
+    margin-top: 0.35rem;
+    width: 2rem;
+
+    border: 0;
   }
   &__mobile-nav-toggle[aria-expanded="true"] {
     background-image: url("/assets/images/close.svg");
@@ -74,7 +94,9 @@
   @include mq.mq($from: tablet) {
     &__primary-navigation {
       --gap: clamp(1.5rem, 5vw, 3rem);
-      padding-block: 2rem;
+
+      padding-top: 2rem;
+      padding-bottom: 2rem;
       padding-inline: clamp(3rem, 10vw, 10rem);
     }
   }
@@ -86,8 +108,9 @@
   @include mq.mq($from: desktop) {
     --gap: 10rem;
     &__logo {
-      margin: 1rem;
       object-fit: cover;
+
+      margin: 1rem;
       width: 50px;
     }
     &__primary-header {
