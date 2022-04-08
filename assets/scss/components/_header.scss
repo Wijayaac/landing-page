@@ -1,0 +1,152 @@
+@use "../util/mq";
+
+.sr-only {
+  border: 0;
+  height: 0;
+  width: 0;
+  margin: 0;
+  padding: 0;
+  font-size: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+  float: left;
+}
+
+.flex {
+  display: flex;
+  gap: var(--gap, 1rem);
+}
+.text--black {
+  color: $black;
+}
+.letter-spacing--2 {
+  letter-spacing: 2px;
+}
+.text--uppercase {
+  text-transform: uppercase;
+}
+
+/* Primary Header */
+.header {
+  @extend .flex;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  padding-top: 1rem;
+
+  background-color: $white;
+
+  &__logo {
+    object-fit: contain;
+    object-position: center;
+
+    width: 120px;
+    height: auto;
+  }
+
+  &__primary-navigation {
+    flex-direction: column;
+
+    position: absolute;
+    z-index: 1000;
+    inset: 0 -10% 0 30%;
+
+    --gap: 2em;
+    padding: min(30vh, 10rem) 2rem;
+    height: 100vh;
+
+    transform: translateX(115%);
+    transition: transform 0.3s ease-out;
+  }
+  &__primary-navigation[data-visible="true"] {
+    transform: translateX(0%);
+  }
+  &__mobile-nav-toggle {
+    display: block;
+
+    position: absolute;
+    z-index: 9999;
+    top: 1rem;
+    right: 0;
+
+    background-color: transparent;
+    background-image: url("/assets/images/list.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    aspect-ratio: 1;
+
+    margin-top: 0.35rem;
+    width: 2rem;
+
+    border: 0;
+  }
+  &__mobile-nav-toggle[aria-expanded="true"] {
+    background-image: url("/assets/images/close.svg");
+  }
+  @supports (backdrop-filter: blur(1rem)) {
+    &__primary-navigation {
+      background: hsl(0 0% 100% /0.1);
+      backdrop-filter: blur(1rem);
+    }
+  }
+  @include mq.mq($from: tablet) {
+    &__primary-navigation {
+      --gap: clamp(1.5rem, 5vw, 3rem);
+
+      padding-top: 2rem;
+      padding-bottom: 2rem;
+      padding-inline: clamp(3rem, 10vw, 10rem);
+    }
+  }
+  @include mq.mq($until: desktop, $and: false, $from: mobile) {
+    &__primary-navigation a > span[aria-hidden] {
+      display: none;
+    }
+  }
+  @include mq.mq($from: desktop) {
+    --gap: 32rem;
+    &__logo {
+      object-fit: cover;
+
+      margin: 1rem;
+      width: 50px;
+    }
+    &__primary-header {
+      align-items: center;
+      justify-content: space-between;
+    }
+    &__mobile-nav-toggle {
+      display: none;
+    }
+    &__primary-navigation {
+      flex-direction: row;
+
+      inset: unset;
+      transform: translateX(0);
+
+      background: transparent;
+      backdrop-filter: none;
+
+      padding: 0;
+      margin: 0;
+    }
+
+    &__primary-navigation a {
+      text-decoration: none;
+    }
+    &__primary-navigation a > [aria-hidden="true"] {
+      font-weight: 700;
+      margin-inline-end: 0.75em;
+    }
+    &__primary-navigation a > span[aria-hidden] {
+      display: block;
+    }
+    &--active {
+      font-weight: 700;
+    }
+  }
+}
