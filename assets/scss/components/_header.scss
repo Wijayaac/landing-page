@@ -17,8 +17,8 @@
   display: flex;
   gap: var(--gap, 1rem);
 }
-.text--white {
-  color: var(--white);
+.text--black {
+  color: $black;
 }
 .letter-spacing--2 {
   letter-spacing: 2px;
@@ -37,6 +37,8 @@
   right: 0;
 
   padding-top: 1rem;
+
+  background-color: $white;
 
   &__logo {
     object-fit: contain;
@@ -106,7 +108,7 @@
     }
   }
   @include mq.mq($from: desktop) {
-    --gap: 10rem;
+    --gap: 32rem;
     &__logo {
       object-fit: cover;
 
